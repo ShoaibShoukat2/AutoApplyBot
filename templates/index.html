@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WayUp.com Bot Form</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-primary {
+            background: #1F2937;
+        }
+
+        .border-gradient {
+            border-image: linear-gradient(to right, #10B981, #F59E0B) 1;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-primary flex items-center justify-center">
+
+    <iframe src="https://seo-report-six.vercel.app/seo_dashboard/" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+
+
+    <div class="relative w-full max-w-3xl mx-auto p-8 bg-gray-800 border-4 border-gradient rounded-xl shadow-2xl">
+        <div class="relative z-10 p-8 bg-gray-900 rounded-lg shadow-lg">
+            <h2 class="text-3xl text-center text-white font-bold mb-8">WayUp Bot</h2>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- URL Field -->
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="url">Target URL</label>
+                    <input type="url" id="url" name="url" class="form-input w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                </div>
+
+                <!-- Email Field -->
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="email">Enter your Email</label>
+                    <input type="email" id="email" name="email" class="form-input w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="password">Enter your Password</label>
+                    <input type="password" id="password" name="password" class="form-input w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                </div>
+
+                 <!-- File Upload Fields -->
+                 <div class="mb-6">
+                    <label class="block text-gray-400 mb-2">Upload Resume (PDF or DOCX)</label>
+                    <input type="file" id="resume" name="resume" class="form-input w-full rounded-lg bg-gray-700 text-white p-2" accept=".pdf,.docx">
+                </div>
+
+                  <!-- Name Fields -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-400 mb-2" for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" class="form-input w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 mb-2" for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" class="form-input w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                </div>
+            </div>
+
+             <!-- Location Dropdown -->
+             <div class="mb-6">
+                <label class="block text-gray-400 mb-2" for="city">City</label>
+                <select id="city" name="city" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                    <option value="" disabled selected>Select your city</option>
+                    <option value="New York">New York</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+
+
+            <div class="mb-6">
+                <label class="block text-gray-400 mb-2" for="am">AM or AM NOT</label>
+                <select id="am" name="am" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                    <option value="" disabled selected>Select AM or AM NOT</option>
+                    <option value="am">am</option>
+                    <option value="am not">am not</option>
+                </select>
+            </div>
+            
+
+
+            <div class="mb-6">
+                <label class="block text-gray-400 mb-2">Upload Profile Picture (PNG/JPEG)</label>
+                <input type="file" id="profile_picture" name="profile_picture" class="form-input w-full rounded-lg bg-gray-700 text-white p-2" accept=".png,.jpeg">
+            </div>
+
+
+            <div class="mb-6">
+                <label class="block text-gray-400 mb-2" for="degree">Select Your Degree</label>
+                <select id="degree" name="degree" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                    <option value="" disabled selected>Select Degree</option>
+                    <option value="Associate's">Associate's</option>
+                    <option value="Bachelor's">Bachelor's</option>
+                    <option value="Master's">Master's</option>
+                    <option value="MBA">MBA</option>
+                    <option value="M.D.">M.D.</option>
+                    <option value="J.D.">J.D.</option>
+                    <option value="Ph.D">Ph.D</option>
+                    <option value="Other degree">Other degree</option>
+                    <option value="No Degree">No Degree</option>
+                </select>
+            </div>
+
+
+            <div class="mb-6">
+                <label class="block text-gray-400 mb-2" for="employment-status">Select Employment Status</label>
+                <select id="employment-status" name="employment-status" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                    <option value="" disabled selected>Select Employment Status</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label class="block text-gray-400 mb-2" for="university_name">University Name</label>
+                <input type="text" id="university_name" name="university_name" class="form-input w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Start Month -->
+                <div class="col-span-1">
+                    <label class="block text-gray-400 mb-2">Start Month</label>
+                    <select id="start_month" name="start_month" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <!-- Add more months as needed -->
+                    </select>
+                </div>
+            
+                <!-- Start Year -->
+                <div class="col-span-1">
+                    <label class="block text-gray-400 mb-2">Start Year</label>
+                    <select id="start_year" name="start_year" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select year</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <!-- Add more years as needed -->
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Start Month -->
+                <div class="col-span-1">
+                    <label class="block text-gray-400 mb-2">graduate Month</label>
+                    <select id="start_month" name="graduate_month" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <!-- Add more months as needed -->
+                    </select>
+                </div>
+            
+                <!-- Start Year -->
+                <div class="col-span-1">
+                    <label class="block text-gray-400 mb-2">graduate Year</label>
+                    <select id="start_year" name="graduate_year" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select year</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <!-- Add more years as needed -->
+                    </select>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="mb-6">
+                <label class="block text-gray-400 mb-2" for="major">Major</label>
+                <select id="major" name="major" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                    <option value="" disabled selected>Select your major</option>
+                    <option value="Technology Education">Technology Education</option>
+                    <!-- Add more majors as needed -->
+                </select>
+            </div>
+
+
+            <div class="mb-6">
+                <!-- CGPA Field -->
+                <label class="block text-gray-400 mb-2" for="cgpa">CGPA</label>
+                <select id="cgpa" name="cgpa" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                    <option value="" disabled selected>Select your CGPA</option>
+                    <option value="4.0">4.0</option>
+                    <option value="3.9">3.9</option>
+                    <option value="3.8">3.8</option>
+                    <option value="3.7">3.7</option>
+                    <option value="3.6">3.6</option>
+                    <option value="3.5">3.5</option>
+                    <option value="3.4">3.4</option>
+                    <option value="3.3">3.3</option>
+                    <option value="3.2">3.2</option>
+                    <option value="3.1">3.1</option>
+                    <option value="3.0">3.0</option>
+                    <!-- Add more CGPA values as needed -->
+                </select>
+            </div>
+                  
+
+                <!-- Hometown Field -->
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="hometown">Hometown</label>
+                    <input type="text" id="hometown" name="hometown" class="form-input w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                </div>
+
+
+
+                <!-- Additional Demographics -->
+
+
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="am">First generation college student </label>
+                    <select id="am" name="f_gen" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select AM or AM NOT</option>
+                        <option value="am">am</option>
+                        <option value="am not">am not</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="am">as being a part of the LGBTQIA+ community</label>
+                    <select id="am" name="f_gen_community" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select AM or AM NOT</option>
+                        <option value="do">do</option>
+                        <option value="identify">identify</option>
+                        <option value="do not">do not</option>
+                    </select>
+                </div>
+
+                
+
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="am">sponsorship for employment</label>
+                    <select id="am" name="sponsorship" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select AM or AM NOT</option>
+                        <option value="do">do</option>
+                        <option value="do not">do not</option>
+                    </select>
+                </div>
+
+
+
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="gender">Gender</label>
+                    <select id="gender" name="gender" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+
+
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="ethnicity">Ethnicity</label>
+                    <select id="ethnicity" name="ethnicity" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                        <option value="" disabled selected>Select your ethnicity</option>
+                        <option value="Asian">Asian</option>
+                        <option value="White">White</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+
+
+                 <!-- Veteran and Disabled Status Fields -->
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-400 mb-2" for="veteran_status">Veteran Status</label>
+                        <select id="veteran_status" name="veteran_status" class="form-select w-full rounded-lg bg-gray-700 text-white focus:ring-green-500 focus:border-green-500 p-3" required>
+                            <option value="" disabled selected>Select your status</option>
+                            <option value="I identify as one or more of the classifications of a protected veteran">I identify as one or more of the classifications of a protected veteran</option>
+                            <option value="Non-veteran">Non-veteran</option>
+                        </select>
+                    </div>
+ 
+                  </div>
+
+
+
+
+
+            
+
+
+
+                <!-- Submit Button -->
+                <div class="mt-8">
+                    <button type="submit" class="w-full py-4 px-8 text-lg font-bold rounded-lg bg-gradient-to-r from-green-500 to-yellow-500 text-white hover:from-green-600 hover:to-yellow-600 transition ease-in-out duration-200">
+                        Start
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
