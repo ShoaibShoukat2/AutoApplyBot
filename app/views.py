@@ -1,17 +1,15 @@
 from django.shortcuts import render
-from flask import Blueprint, render_template
-from flask import Flask, request, jsonify
+from django.http import JsonResponse
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, StaleElementReferenceException
-import time
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementNotInteractableException
-from werkzeug.utils import secure_filename
+from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 import os
-
-main = Blueprint('main', __name__)
+import time
+from django.utils.text import slugify
 
 UPLOAD_FOLDER = 'D:/OfficeWork/HiredSiteBot/core/static/uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'docx'}
@@ -22,17 +20,24 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def save_file(file, upload_folder):
+    """Save file to the specified upload folder with a sanitized filename."""
+    filename = slugify(file.name)
+    file_path = os.path.join(upload_folder, filename)
+    with open(file_path, 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
+    return file_path
+
 
 # Ensure the directory exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
-
-
 # Create your views here.
 
 
-def index(request):
+def index(request): 
     result = None
     
     
@@ -74,19 +79,11 @@ def index(request):
         
         
         if resume and allowed_file(resume.name):
-            resume_filename = secure_filename(resume.name)
-            resume_path = os.path.join(UPLOAD_FOLDER, resume_filename)
-            with open(resume_path, 'wb+') as destination:
-                for chunk in resume.chunks():
-                    destination.write(chunk)
+            resume_path = save_file(resume, UPLOAD_FOLDER)
 
             
         if profile_picture:
-            profile_picture_filename = secure_filename(profile_picture.name)
-            profile_picture_path = os.path.join(UPLOAD_FOLDER, profile_picture_filename)
-            with open(profile_picture_path, 'wb+') as destination:
-                for chunk in profile_picture.chunks():
-                    destination.write(chunk)
+            profile_picture_path = save_file(profile_picture, UPLOAD_FOLDER)
                     
             
             
@@ -223,10 +220,6 @@ def index(request):
                     except Exception as e:
                         print("Error:", e)
                         
-                        
-                    
-                    
-
                     
                 except TimeoutException as e:
                     print(f"TimeoutException: {e}")
